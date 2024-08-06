@@ -1,4 +1,5 @@
 using DefenseSim.Data;
+using DefenseSim.Data.Service;
 using Microsoft.EntityFrameworkCore;
 namespace DefenseSim
 {
@@ -11,8 +12,13 @@ namespace DefenseSim
             builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
+            builder.Services.AddScoped<IAttackService, AttackService>();
+            builder.Services.AddScoped<IDefenseService, DefenseService>();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
 
             var app = builder.Build();
 

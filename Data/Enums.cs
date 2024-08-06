@@ -31,6 +31,6 @@
         Jerusalem,
         TelAviv,
         Eilat,
-        Hifa
+        Haifa
     }
 }

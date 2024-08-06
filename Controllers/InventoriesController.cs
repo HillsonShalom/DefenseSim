@@ -22,6 +22,8 @@ namespace DefenseSim.Controllers
         // GET: Inventories
         public async Task<IActionResult> Index()
         {
+            // Seed seed = new Seed(_context);
+            // await seed.Go();
             return View(await _context.inventory.ToListAsync());
         }
 

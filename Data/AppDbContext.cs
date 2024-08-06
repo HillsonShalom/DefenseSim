@@ -5,7 +5,10 @@ namespace DefenseSim.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+            // צריך להכניס פה קריאה לפונקצית סיד שנשתמש בה בפעם הראשונה
+        }
 
         public DbSet<Weapon> weapons {get; set;}
         public DbSet<Response> responses {get; set;}
