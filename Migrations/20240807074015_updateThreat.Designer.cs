@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DefenseSim.Migrations
 {
     [DbContext(typeof(AttackDbContext))]
-    [Migration("20240806161735_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240807074015_updateThreat")]
+    partial class updateThreat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,9 +58,10 @@ namespace DefenseSim.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .IsUnicode(true)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -99,6 +100,15 @@ namespace DefenseSim.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BarrageCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageDelay")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageSize")
+                        .HasColumnType("int");
 
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");

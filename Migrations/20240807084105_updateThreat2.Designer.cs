@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DefenseSim.Migrations
 {
     [DbContext(typeof(AttackDbContext))]
-    [Migration("20240806161735_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240807084105_updateThreat2")]
+    partial class updateThreat2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,9 +58,10 @@ namespace DefenseSim.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .IsUnicode(true)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -100,10 +101,22 @@ namespace DefenseSim.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BarrageCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageDelay")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageSize")
+                        .HasColumnType("int");
+
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LaunchTime")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LaunchTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OriginId")

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DefenseSim.Models.Inventory>
+﻿@model IEnumerable<DefenseSim.ModelsDefense.Inventory>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,23 +9,6 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<ul id="list">
-</ul>
-<script>
-    let list = document.getElementById('list');
-
-    fetch('http://localhost:5009/api/APIattack')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-
-            data.forEach(element => {
-                list.innerHTML += `<li>${element}</li>`;
-            })
-        });
-</script>
-
 <table class="table">
     <thead>
         <tr>

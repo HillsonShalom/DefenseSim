@@ -1,4 +1,4 @@
-namespace DefenseSim.Models
+namespace DefenseSim.ModelsAttack
 {
     public class ErrorViewModel
     {

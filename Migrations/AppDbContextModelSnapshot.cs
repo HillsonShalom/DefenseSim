@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DefenseSim.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AttackDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -22,26 +22,7 @@ namespace DefenseSim.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DefenseSim.Models.Inventory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MeasureType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("inventory");
-                });
-
-            modelBuilder.Entity("DefenseSim.Models.Location", b =>
+            modelBuilder.Entity("DefenseSim.ModelsAttack.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +46,7 @@ namespace DefenseSim.Migrations
                     b.ToTable("locations");
                 });
 
-            modelBuilder.Entity("DefenseSim.Models.Response", b =>
+            modelBuilder.Entity("DefenseSim.ModelsAttack.Response", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +71,7 @@ namespace DefenseSim.Migrations
                     b.ToTable("responses");
                 });
 
-            modelBuilder.Entity("DefenseSim.Models.Threat", b =>
+            modelBuilder.Entity("DefenseSim.ModelsAttack.Threat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,10 +79,22 @@ namespace DefenseSim.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BarrageCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageDelay")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BarrageSize")
+                        .HasColumnType("int");
+
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LaunchTime")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LaunchTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OriginId")
@@ -126,7 +119,7 @@ namespace DefenseSim.Migrations
                     b.ToTable("threats");
                 });
 
-            modelBuilder.Entity("DefenseSim.Models.Weapon", b =>
+            modelBuilder.Entity("DefenseSim.ModelsAttack.Weapon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,25 +144,25 @@ namespace DefenseSim.Migrations
                     b.ToTable("weapons");
                 });
 
-            modelBuilder.Entity("DefenseSim.Models.Threat", b =>
+            modelBuilder.Entity("DefenseSim.ModelsAttack.Threat", b =>
                 {
-                    b.HasOne("DefenseSim.Models.Location", "Destination")
+                    b.HasOne("DefenseSim.ModelsAttack.Location", "Destination")
                         .WithMany()
                         .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("DefenseSim.Models.Location", "Origin")
+                    b.HasOne("DefenseSim.ModelsAttack.Location", "Origin")
                         .WithMany()
                         .HasForeignKey("OriginId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("DefenseSim.Models.Response", "Response")
+                    b.HasOne("DefenseSim.ModelsAttack.Response", "Response")
                         .WithMany()
                         .HasForeignKey("ResponseId");
 
-                    b.HasOne("DefenseSim.Models.Weapon", "Weapon")
+                    b.HasOne("DefenseSim.ModelsAttack.Weapon", "Weapon")
                         .WithMany()
                         .HasForeignKey("WeaponId")
                         .OnDelete(DeleteBehavior.Cascade)

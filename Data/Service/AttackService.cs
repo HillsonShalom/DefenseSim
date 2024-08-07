@@ -2,8 +2,8 @@
 {
     public class AttackService : IAttackService
     {
-        private readonly AppDbContext _context;
-        public AttackService(AppDbContext context)
+        private readonly AttackDbContext _context;
+        public AttackService(AttackDbContext context)
         {
             _context = context;
         }

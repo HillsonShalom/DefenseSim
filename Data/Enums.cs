@@ -21,16 +21,4 @@
         Fail
     }
 
-    public enum eLocation
-    {
-        Iran,
-        Lebanon,
-        Syria,
-        Yemen,
-        Gaza,
-        Jerusalem,
-        TelAviv,
-        Eilat,
-        Haifa
-    }
 }

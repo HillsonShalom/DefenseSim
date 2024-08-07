@@ -9,8 +9,11 @@ namespace DefenseSim
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
+            builder.Services.AddDbContext<AttackDbContext>(option => option.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+            builder.Services.AddDbContext<DefenseDbContext>(option => option.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefenseConnectionString")));
 
             builder.Services.AddScoped<IAttackService, AttackService>();
             builder.Services.AddScoped<IDefenseService, DefenseService>();
@@ -39,7 +42,7 @@ namespace DefenseSim
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Inventories}/{action=Index}/{id?}");
+                pattern: "{controller=Threats}/{action=Index}/{id?}");
 
             app.Run();
         }

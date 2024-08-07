@@ -1,11 +1,11 @@
-﻿using DefenseSim.Models;
+﻿using DefenseSim.ModelsAttack;
 
 namespace DefenseSim.Data
 {
     public class Seed
     {
-        private readonly AppDbContext _context;
-        public Seed(AppDbContext context)
+        private readonly AttackDbContext _context;
+        public Seed(AttackDbContext context)
         {
             _context = context;
         }

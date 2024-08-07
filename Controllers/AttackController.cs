@@ -5,8 +5,8 @@ namespace DefenseSim.Controllers
 {
     public class AttackController : Controller
     {
-        private readonly AppDbContext _context;
-        public AttackController(AppDbContext context)
+        private readonly AttackDbContext _context;
+        public AttackController(AttackDbContext context)
         {
             _context = context;
         }

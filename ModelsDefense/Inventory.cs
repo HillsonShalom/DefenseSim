@@ -1,6 +1,6 @@
 ﻿using DefenseSim.Data;
 
-namespace DefenseSim.Models
+namespace DefenseSim.ModelsDefense
 {
     public class Inventory
     {

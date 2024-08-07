@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DefenseSim.ModelsAttack.Threat>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LaunchTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weapon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarrageSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarrageCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarrageDelay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Origin.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LaunchTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weapon.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarrageSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarrageCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarrageDelay)
+            </td>
+            <td>
+                <a asp-action="Launch" asp-route-id="@item.Id">Launch</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

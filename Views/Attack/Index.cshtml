@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<ul id="list">
+</ul>
+<script>
+    let list = document.getElementById('list');
+
+    fetch('http://localhost:5009/api/APIattack')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            data.forEach(element => {
+                list.innerHTML += `<li>${element}</li>`;
+            })
+        });
+</script>

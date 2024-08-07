@@ -35,5 +35,7 @@
             if (speed <= 0 || distance <= 0) return 0;
             return (distance / speed) * 3600;
         }
+
+        
     }
 }

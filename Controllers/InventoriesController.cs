@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DefenseSim.Data;
-using DefenseSim.Models;
+using DefenseSim.ModelsDefense;
 
 namespace DefenseSim.Controllers
 {
     public class InventoriesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly DefenseDbContext _context;
 
-        public InventoriesController(AppDbContext context)
+        public InventoriesController(DefenseDbContext context)
         {
             _context = context;
         }
@@ -22,9 +22,7 @@ namespace DefenseSim.Controllers
         // GET: Inventories
         public async Task<IActionResult> Index()
         {
-            // Seed seed = new Seed(_context);
-            // await seed.Go();
-            return View(await _context.inventory.ToListAsync());
+            return View(await _context.Inventories.ToListAsync());
         }
 
         // GET: Inventories/Details/5
@@ -35,7 +33,7 @@ namespace DefenseSim.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.inventory
+            var inventory = await _context.Inventories
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventory == null)
             {
@@ -75,7 +73,7 @@ namespace DefenseSim.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.inventory.FindAsync(id);
+            var inventory = await _context.Inventories.FindAsync(id);
             if (inventory == null)
             {
                 return NotFound();
@@ -126,7 +124,7 @@ namespace DefenseSim.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.inventory
+            var inventory = await _context.Inventories
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventory == null)
             {
@@ -141,10 +139,10 @@ namespace DefenseSim.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var inventory = await _context.inventory.FindAsync(id);
+            var inventory = await _context.Inventories.FindAsync(id);
             if (inventory != null)
             {
-                _context.inventory.Remove(inventory);
+                _context.Inventories.Remove(inventory);
             }
 
             await _context.SaveChangesAsync();
@@ -153,7 +151,7 @@ namespace DefenseSim.Controllers
 
         private bool InventoryExists(int id)
         {
-            return _context.inventory.Any(e => e.Id == id);
+            return _context.Inventories.Any(e => e.Id == id);
         }
     }
 }

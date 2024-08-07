@@ -1,11 +1,11 @@
-﻿using DefenseSim.Models;
+﻿using DefenseSim.ModelsAttack;
 using Microsoft.EntityFrameworkCore;
 
 namespace DefenseSim.Data
 {
-    public class AppDbContext : DbContext
+    public class AttackDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AttackDbContext(DbContextOptions<AttackDbContext> options) : base(options)
         {
             // צריך להכניס פה קריאה לפונקצית סיד שנשתמש בה בפעם הראשונה
         }
@@ -13,7 +13,6 @@ namespace DefenseSim.Data
         public DbSet<Weapon> weapons {get; set;}
         public DbSet<Response> responses {get; set;}
         public DbSet<Threat> threats { get; set; }
-        public DbSet<Inventory> inventory {get; set;}
         public DbSet<Location> locations {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,10 +25,6 @@ namespace DefenseSim.Data
                 .IsRequired();
             modelBuilder.Entity<Weapon>()
                 .HasKey(w => w.Id);
-
-            modelBuilder.Entity<Inventory>()
-                .Property(i => i.MeasureType)
-                .IsRequired();
 
             modelBuilder.Entity<Location>()
                 .Property(i => i.Name)

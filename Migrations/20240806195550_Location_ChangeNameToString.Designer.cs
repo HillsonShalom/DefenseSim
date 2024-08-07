@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DefenseSim.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AttackDbContext))]
     [Migration("20240806195550_Location_ChangeNameToString")]
     partial class Location_ChangeNameToString
     {
